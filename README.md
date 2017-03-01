@@ -3,19 +3,21 @@
 printでCloudWatchに出力されたログを一日一回 S3に回す時に使うソース
 
 ## 環境変数
-`S3_BUCKET`  
-ログ保存先
+* LOG_GROUP
+* S3_BUCKET
+* S3_FOLDER_PATH (空でもOK)
 
-`S3_FOLDER`
+##sample
+```
+LOG_GROUP=/aws/lambda/lambda_1st_test
+S3_BUCKET=logs
+S3_FOLDER_PATH=exampleproject/stg/
+```
 
-サブフォルダ ところでバケットってプロジェクト単位で作ってる？  
+
+ところでバケットってプロジェクト単位で作ってる？  
 それとも LOG_BUCKETってでかい単位で作って 中のフォルダでプロジェクト分けてる？  
 バケット上限あるし数増えると管理めんどくさいし、どうするのがベストなんかね  
-
-
-`LAMBDA_NAME`  
-ログを出力しているラムダファンクション名  
-なおAPIGatewayだろうがなんだろうが 対象にできるのでこの環境変数名は つけ間違えたなと思う
 
 
 ## トリガーは CloudWatchScheduler
